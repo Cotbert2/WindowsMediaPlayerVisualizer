@@ -7,6 +7,9 @@ using System.Windows.Forms;
 using System.Text;
 using Guna.UI2.WinForms;
 using System.Threading.Tasks;
+using WindowsMediaPlayerVisualizer.Visualizers;
+using NAudio.Wave.SampleProviders;
+using WindowsMediaPlayerVisualizer.Utils;
 
 namespace WindowsMediaPlayerVisualizer.Controllers
 {
@@ -14,6 +17,8 @@ namespace WindowsMediaPlayerVisualizer.Controllers
     {
         private IWavePlayer waveOut;
         private AudioFileReader audioFileReader;
+        private ISampleProvider sampleProvider;
+
         private bool isPlaying = false;
         private Label lblArtist;
         private Label lblSong;
@@ -22,9 +27,21 @@ namespace WindowsMediaPlayerVisualizer.Controllers
         private Timer timer1;
         private Label lblCounter;
         private Label lblCountdown;
+        private Panel canvas;
+
+        //Visualizers
+        private Visualizer1 visualizer1;
+        private Visualizer2 visualizer2;
+        private Visualizer3 visualizer3;
+        private Visualizer4 visualizer4;
+
+
+        private int currentVisualizerIndex = 0;
+        private double visualizerTimerSeconds = 0;
+        private const double visualizerDuration = 30;
 
         public Player(Label lblArtist, Label lblSong, Guna2TrackBar barPlayer, IconButton btnPlay,
-            Timer timer1, Label lblCounter, Label lblCountdown) 
+            Timer timer1, Label lblCounter, Label lblCountdown, Panel canvas) 
         {
             this.lblArtist = lblArtist;
             this.lblSong = lblSong;
@@ -33,21 +50,45 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             this.timer1 = timer1;
             this.lblCounter = lblCounter;
             this.lblCountdown = lblCountdown;
+            this.canvas = canvas;
+
+            //setup visualizers
+
+            visualizer1 = new Visualizer1(canvas);
+            visualizer2 = new Visualizer2(canvas);
+            visualizer3 = new Visualizer3(canvas);
+            visualizer4 = new Visualizer4(canvas);
+
+            currentVisualizer = visualizer1;
+            canvas.Paint += visualizer1.Canvas_Paint;
         }
 
         private void setSong(string path)
         {
             var file = TagLib.File.Create(path);
 
-            lblArtist.Text = file.Tag.Title ?? "Unknown Song";
-            lblSong.Text = file.Tag.FirstPerformer ?? "Unknown Artist";
+            lblArtist.Text = file.Tag.FirstPerformer ?? "Unknown Artist";
+            lblSong.Text = file.Tag.Title ?? "Unknown Song";
+
             audioFileReader = new AudioFileReader(path);
+            var sampleChannel = new SampleChannel(audioFileReader, true);
+            var meteringProvider = new MeteringSampleProvider(sampleChannel);
+
+            meteringProvider.StreamVolume += (s, a) =>
+            {
+                currentVolume = a.MaxSampleValues.Average(); 
+            };
+
+            fftSampleProvider = new FFTSampleProvider(meteringProvider, 64);
+            sampleProvider = fftSampleProvider;
+
             waveOut = new WaveOutEvent();
-            waveOut.Init(audioFileReader);
+            waveOut.Init(sampleProvider);
             barPlayer.Value = 0;
             isPlaying = false;
             btnPlay.IconChar = IconChar.Play;
         }
+
 
         public void play()
         {
@@ -115,7 +156,27 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             }
         }
 
+        float currentVolume = 0f;
+        float volumeSmoothing = 0.2f;
+        private FFTSampleProvider fftSampleProvider;
+
+
+
         public void tickAction() {
+            tickCounter++;
+            if (tickCounter % 120 == 0)
+            {
+                SwitchVisualizer();
+            }
+
+            if (currentVisualizer is Visualizer1 v1 && fftSampleProvider != null)
+                v1.Update(fftSampleProvider.GetFrequencies());
+            else if (currentVisualizer is Visualizer2 v2)
+                v2.Update(currentVolume, volumeSmoothing);
+            else if (currentVisualizer is Visualizer3 v3)
+                v3.Update();
+            else if (currentVisualizer is Visualizer4 v4)
+                v4.Update();
             if (audioFileReader != null && audioFileReader.TotalTime.TotalSeconds > 0)
             {
                 double current = audioFileReader.CurrentTime.TotalSeconds;
@@ -133,6 +194,8 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                 lblCountdown.Text = $"-{remainingTime.Minutes}:{zeroFormat(remainingTime.Seconds)}";
 
                 if (audioFileReader.CurrentTime.TotalSeconds > audioFileReader.TotalTime.TotalSeconds) stop();
+
+
             }
         }
 
@@ -165,6 +228,51 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                 }
             }
         }
+
+        private int tickCounter = 0;
+        private object currentVisualizer;
+
+        private void DetachCurrentVisualizer()
+        {
+            if (currentVisualizer is Visualizer1 v1) canvas.Paint -= v1.Canvas_Paint;
+            else if (currentVisualizer is Visualizer2 v2) canvas.Paint -= v2.Canvas_Paint;
+            else if (currentVisualizer is Visualizer3 v3) canvas.Paint -= v3.Canvas_Paint;
+            else if (currentVisualizer is Visualizer4 v4) canvas.Paint -= v4.Canvas_Paint;
+        }
+
+        private void SwitchVisualizer()
+        {
+            DetachCurrentVisualizer();
+
+            currentVisualizerIndex = (currentVisualizerIndex + 1) % 4;
+
+            switch (currentVisualizerIndex)
+            {
+                case 0:
+                    currentVisualizer = visualizer1;
+                    break;
+                case 1:
+                    currentVisualizer = visualizer2;
+                    break;
+                case 2:
+                    currentVisualizer = visualizer3;
+                    break;
+                case 3:
+                    currentVisualizer = visualizer4;
+                    currentVisualizer = visualizer4;
+                    break;
+            }
+
+            if (currentVisualizer is Visualizer1 v1) canvas.Paint += v1.Canvas_Paint;
+            else if (currentVisualizer is Visualizer2 v2) canvas.Paint += v2.Canvas_Paint;
+            else if (currentVisualizer is Visualizer3 v3) canvas.Paint += v3.Canvas_Paint;
+            else if (currentVisualizer is Visualizer4 v4) canvas.Paint += v4.Canvas_Paint;
+
+            canvas.Invalidate();
+        }
+
+
+
     }
 
 }

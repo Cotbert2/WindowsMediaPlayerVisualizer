@@ -1,4 +1,6 @@
-﻿namespace WindowsMediaPlayerVisualizer.Views
+﻿using WindowsMediaPlayerVisualizer.Components;
+
+namespace WindowsMediaPlayerVisualizer.Views
 {
     partial class MainFrm
     {
@@ -41,9 +43,8 @@
             this.btnStop = new FontAwesome.Sharp.IconButton();
             this.btnPlay = new FontAwesome.Sharp.IconButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.canvas = new System.Windows.Forms.PictureBox();
+            this.canvas = new VisualizerCanvas();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnMusic
@@ -79,6 +80,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1266, 140);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // lblCountdown
             // 
@@ -204,9 +206,9 @@
             // 
             this.canvas.Location = new System.Drawing.Point(-1, 1);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(1233, 671);
+            this.canvas.Size = new System.Drawing.Size(1233, 670);
             this.canvas.TabIndex = 1;
-            this.canvas.TabStop = false;
+            this.canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Draw);
             // 
             // MainFrm
             // 
@@ -222,7 +224,6 @@
             this.Load += new System.EventHandler(this.onLoad);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.canvas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -241,6 +242,6 @@
         private FontAwesome.Sharp.IconButton btnMusic;
         private System.Windows.Forms.Label lblCountdown;
         private System.Windows.Forms.Label lblCounter;
-        private System.Windows.Forms.PictureBox canvas;
+        private System.Windows.Forms.Panel canvas;
     }
 }

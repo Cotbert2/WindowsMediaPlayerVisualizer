@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsMediaPlayerVisualizer.Controllers;
+using WindowsMediaPlayerVisualizer.Visualizers;
 
 namespace WindowsMediaPlayerVisualizer.Views
 {
@@ -17,10 +18,11 @@ namespace WindowsMediaPlayerVisualizer.Views
     {
 
         private Player mediaPlayer;
+
         public MainFrm()
         {
             InitializeComponent();
-            mediaPlayer = new Player(lblArtist, lblSong, barPlayer, btnPlay, timer1, lblCounter, lblCountdown);
+            mediaPlayer = new Player(lblArtist, lblSong, barPlayer, btnPlay, timer1, lblCounter, lblCountdown, canvas);
         }
 
 
@@ -67,6 +69,16 @@ namespace WindowsMediaPlayerVisualizer.Views
         private void btnMusic_click(object sender, EventArgs e)
         {
             mediaPlayer.selectFile();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+    }
+
+        private void Draw(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
