@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.btnMusic = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCountdown = new System.Windows.Forms.Label();
+            this.lblCounter = new System.Windows.Forms.Label();
             this.lblSong = new System.Windows.Forms.Label();
             this.lblArtist = new System.Windows.Forms.Label();
             this.barPlayer = new Guna.UI2.WinForms.Guna2TrackBar();
@@ -39,8 +41,6 @@
             this.btnStop = new FontAwesome.Sharp.IconButton();
             this.btnPlay = new FontAwesome.Sharp.IconButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.lblCounter = new System.Windows.Forms.Label();
-            this.lblCountdown = new System.Windows.Forms.Label();
             this.canvas = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.canvas)).BeginInit();
@@ -55,7 +55,7 @@
             this.btnMusic.IconColor = System.Drawing.Color.White;
             this.btnMusic.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMusic.IconSize = 32;
-            this.btnMusic.Location = new System.Drawing.Point(1180, 46);
+            this.btnMusic.Location = new System.Drawing.Point(1184, 31);
             this.btnMusic.Name = "btnMusic";
             this.btnMusic.Size = new System.Drawing.Size(40, 40);
             this.btnMusic.TabIndex = 5;
@@ -79,6 +79,26 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1266, 140);
             this.panel1.TabIndex = 0;
+            // 
+            // lblCountdown
+            // 
+            this.lblCountdown.AutoSize = true;
+            this.lblCountdown.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblCountdown.Location = new System.Drawing.Point(910, 106);
+            this.lblCountdown.Name = "lblCountdown";
+            this.lblCountdown.Size = new System.Drawing.Size(35, 16);
+            this.lblCountdown.TabIndex = 7;
+            this.lblCountdown.Text = "-0:00";
+            // 
+            // lblCounter
+            // 
+            this.lblCounter.AutoSize = true;
+            this.lblCounter.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblCounter.Location = new System.Drawing.Point(441, 110);
+            this.lblCounter.Name = "lblCounter";
+            this.lblCounter.Size = new System.Drawing.Size(31, 16);
+            this.lblCounter.TabIndex = 6;
+            this.lblCounter.Text = "0:00";
             // 
             // lblSong
             // 
@@ -179,26 +199,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // lblCounter
-            // 
-            this.lblCounter.AutoSize = true;
-            this.lblCounter.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblCounter.Location = new System.Drawing.Point(441, 110);
-            this.lblCounter.Name = "lblCounter";
-            this.lblCounter.Size = new System.Drawing.Size(31, 16);
-            this.lblCounter.TabIndex = 6;
-            this.lblCounter.Text = "0:00";
-            // 
-            // lblCountdown
-            // 
-            this.lblCountdown.AutoSize = true;
-            this.lblCountdown.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblCountdown.Location = new System.Drawing.Point(910, 106);
-            this.lblCountdown.Name = "lblCountdown";
-            this.lblCountdown.Size = new System.Drawing.Size(35, 16);
-            this.lblCountdown.TabIndex = 7;
-            this.lblCountdown.Text = "-0:00";
             // 
             // canvas
             // 
