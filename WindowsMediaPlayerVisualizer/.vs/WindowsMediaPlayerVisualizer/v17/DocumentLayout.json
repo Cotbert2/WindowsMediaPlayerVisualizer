@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\windowsmediaplayervisualizer\\views\\mainfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|solutionrelative:windowsmediaplayervisualizer\\views\\mainfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|e:\\development\\windowsmediaplayervisualizer\\windowsmediaplayervisualizer\\windowsmediaplayervisualizer\\views\\mainfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|solutionrelative:windowsmediaplayervisualizer\\views\\mainfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\windowsmediaplayervisualizer\\views\\mainfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|solutionrelative:windowsmediaplayervisualizer\\views\\mainfrm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|e:\\development\\windowsmediaplayervisualizer\\windowsmediaplayervisualizer\\windowsmediaplayervisualizer\\views\\mainfrm.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|solutionrelative:windowsmediaplayervisualizer\\views\\mainfrm.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FBF7A8EC-CF8A-414F-85C8-EB84D3819B97}|WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer.csproj|E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\windowsmediaplayervisualizer\\controllers\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,20 +42,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "MainFrm.Designer.cs",
+              "DocumentMoniker": "E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\Views\\MainFrm.Designer.cs",
+              "RelativeDocumentMoniker": "WindowsMediaPlayerVisualizer\\Views\\MainFrm.Designer.cs",
+              "ToolTip": "E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\Views\\MainFrm.Designer.cs",
+              "RelativeToolTip": "WindowsMediaPlayerVisualizer\\Views\\MainFrm.Designer.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAvwDYAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T11:07:43.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainFrm.cs",
               "DocumentMoniker": "E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\Views\\MainFrm.cs",
               "RelativeDocumentMoniker": "WindowsMediaPlayerVisualizer\\Views\\MainFrm.cs",
               "ToolTip": "E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\Views\\MainFrm.cs",
               "RelativeToolTip": "WindowsMediaPlayerVisualizer\\Views\\MainFrm.cs",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAkwEUAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAUwJEAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-23T02:27:00.949Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Player.cs",
               "DocumentMoniker": "E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\Controllers\\Player.cs",
               "RelativeDocumentMoniker": "WindowsMediaPlayerVisualizer\\Controllers\\Player.cs",
@@ -64,7 +81,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainFrm.cs [Design]",
               "DocumentMoniker": "E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\Views\\MainFrm.cs",
               "RelativeDocumentMoniker": "WindowsMediaPlayerVisualizer\\Views\\MainFrm.cs",
@@ -76,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\Development\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\WindowsMediaPlayerVisualizer\\Program.cs",
               "RelativeDocumentMoniker": "WindowsMediaPlayerVisualizer\\Program.cs",

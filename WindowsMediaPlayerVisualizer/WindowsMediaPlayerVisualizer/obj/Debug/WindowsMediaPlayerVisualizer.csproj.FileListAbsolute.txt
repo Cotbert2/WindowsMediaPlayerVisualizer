@@ -58,3 +58,4 @@ E:\Development\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\Windows
 E:\Development\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\bin\Debug\System.Threading.Tasks.Extensions.xml
 E:\Development\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\bin\Debug\System.ValueTuple.xml
 E:\Development\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\bin\Debug\FontAwesome.Sharp.dll
+E:\Development\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\WindowsMediaPlayerVisualizer\bin\Debug\taglib-sharp.dll
