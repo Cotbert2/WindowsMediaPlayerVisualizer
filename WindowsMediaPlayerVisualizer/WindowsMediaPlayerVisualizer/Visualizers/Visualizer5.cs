@@ -71,8 +71,8 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
 
             float cx = canvas.Width / 2f;
             float cy = canvas.Height / 2f;
-            int numWaves = 6; //Cantidad de repeticiones de la onda
-            float maxRadius = Math.Min(cx, cy) - 0.2f; //Radio máximo de la onda
+            int numWaves = 6;
+            float maxRadius = Math.Min(cx, cy) - 0.2f; 
 
             for (int i = 0; i < numWaves; i++)
             {
@@ -92,7 +92,7 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
             PointF[] points = new PointF[frequencies.Length];
             for (int i = 0; i < frequencies.Length; i++)
             {
-                float amplitude = Math.Min(frequencies[i] * 4f, 3f); // Amplifica el valor de frecuencia
+                float amplitude = Math.Min(frequencies[i] * 4f, 3f);
                 float radius = maxRadius * amplitude;
 
                 double angle = (i / (double)frequencies.Length) * Math.PI * 2;
@@ -118,8 +118,8 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
 
         private void DrawBounceLine(Graphics g)
         {
-            float avg = frequencies.Average(); // energía global
-            float height = Math.Min(avg * 2000f, 2000f); // escala el rebote (ajustable)
+            float avg = frequencies.Average(); 
+            float height = Math.Min(avg * 2000f, 2000f); 
 
             float baseY = canvas.Height - 40;
             float lineY = baseY - height;
@@ -135,14 +135,14 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
             float cx = canvas.Width / 2f;
             float cy = canvas.Height / 2f;
 
-            float volume = frequencies.Average(); // reacciona al volumen
+            float volume = frequencies.Average(); 
 
             foreach (var p in particles)
             {
                 p.angle += p.speed;
                 float x = cx + (float)(Math.Cos(p.angle) * p.radius);
                 float y = cy + (float)(Math.Sin(p.angle) * p.radius);
-                float size = p.baseSize + (volume * 20f); // tamaño varía con volumen
+                float size = p.baseSize + (volume * 20f); 
 
                 using (Brush brush = new SolidBrush(p.color))
                 {
