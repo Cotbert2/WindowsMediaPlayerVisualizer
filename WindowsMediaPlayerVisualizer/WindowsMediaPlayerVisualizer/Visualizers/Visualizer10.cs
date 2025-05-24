@@ -5,44 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WindowsMediaPlayerVisualizer.Utils;
 
 namespace WindowsMediaPlayerVisualizer.Visualizers
 {
-    public class Visualizer11
+    public class Visualizer10
     {
-        private Panel canvas;
+        private const int PointCount = 100;
+        private const float BaseRadiusFactor = 0.25f;
+        private const float RandomOffset = 10f;
+        private const float WaveScaleFactor = 0.4f;
+
+        private readonly Panel canvas;
+        private readonly PointF[] staticPoints;
         private float[] audioSamples;
         private float currentVolume;
-        private float rotationAngle = 0;
-        private const int PointCount = 100;
-        private PointF[] staticPoints = new PointF[PointCount];
-        private Random random = new Random();
+        private float rotationAngle;
 
-        public Visualizer11(Panel canvas)
+        public Visualizer10(Panel canvas)
         {
             this.canvas = canvas;
             this.canvas.Paint += Canvas_Paint;
-
-            InitializePoints();
+            this.staticPoints = InitializePoints();
         }
 
-        private void InitializePoints()
+        private PointF[] InitializePoints()
         {
-            int centerX = canvas.Width / 2;
-            int centerY = canvas.Height / 2;
-            int radius = canvas.Height / 4;
-
-            for (int i = 0; i < PointCount; i++)
-            {
-                double angle = 2 * Math.PI * i / PointCount;
-                float x = centerX + (float)(radius * Math.Cos(angle));
-                float y = centerY + (float)(radius * Math.Sin(angle));
-
-                x += (float)(random.NextDouble() * 20 - 10);
-                y += (float)(random.NextDouble() * 20 - 10);
-
-                staticPoints[i] = new PointF(x, y);
-            }
+            PointF center = new PointF(canvas.Width / 2, canvas.Height / 2);
+            int radius = (int)(canvas.Height * BaseRadiusFactor);
+            return VisualizerHelpers.InitializeCircularPoints(
+                PointCount,
+                center,
+                radius,
+                RandomOffset);
         }
 
         public void Update(float[] frequencyAmplitudes, float volume)
@@ -107,7 +102,7 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
         private void DrawPoints(Graphics g)
         {
             if (audioSamples == null) return;
-            float pointSize = 2 + currentVolume * 3; 
+            float pointSize = 2 + currentVolume * 3;
 
 
             foreach (var point in staticPoints)
