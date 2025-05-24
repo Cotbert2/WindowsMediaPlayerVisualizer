@@ -38,6 +38,8 @@ namespace WindowsMediaPlayerVisualizer.Controllers
         private Visualizer6 visualizer6;
         private Visualizer11 visualizer11;
         private Visualizer9 visualizer9;
+        private Visualizer7 visualizer7;
+        private Visualizer8 visualizer8;
 
 
         private int currentVisualizerIndex = 0;
@@ -66,6 +68,9 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             visualizer6 = new Visualizer6(canvas);
             visualizer11 = new Visualizer11(canvas);
             visualizer9 = new Visualizer9(canvas);
+            visualizer7 = new Visualizer7(canvas);
+            visualizer8 = new Visualizer8(canvas);
+
 
             currentVisualizer = visualizer1;
             canvas.Paint += visualizer1.Canvas_Paint;
@@ -193,6 +198,10 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                 v11.Update(fftSampleProvider.GetFrequencies(), currentVolume);
             else if (currentVisualizer is Visualizer9 v9)
                 v9.Update(fftSampleProvider.GetFrequencies(), currentVolume);
+            else if (currentVisualizer is Visualizer7 v7)
+                v7.Update(fftSampleProvider.GetFrequencies());
+            else if (currentVisualizer is Visualizer8 v8)
+                v8.Update(fftSampleProvider.GetFrequencies());
 
             if (audioFileReader != null && audioFileReader.TotalTime.TotalSeconds > 0)
             {
@@ -259,13 +268,15 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             else if (currentVisualizer is Visualizer6 v6) canvas.Paint -= v6.Canvas_Paint;
             else if (currentVisualizer is Visualizer11 v11) canvas.Paint -= v11.Canvas_Paint;
             else if (currentVisualizer is Visualizer9 v9) canvas.Paint -= v9.Canvas_Paint;
+            else if (currentVisualizer is Visualizer7 v7) canvas.Paint -= v7.Canvas_Paint;
+            else if (currentVisualizer is Visualizer8 v8) canvas.Paint -= v8.Canvas_Paint;
         }
 
         private void SwitchVisualizer()
         {
             DetachCurrentVisualizer();
 
-            currentVisualizerIndex = (currentVisualizerIndex + 1) % 8;
+            currentVisualizerIndex = (currentVisualizerIndex + 1) % 10;
 
             switch (currentVisualizerIndex)
             {
@@ -293,6 +304,12 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                 case 7:
                     currentVisualizer = visualizer9;
                     break;
+                case 8:
+                    currentVisualizer = visualizer7;
+                    break;
+                case 9:
+                    currentVisualizer = visualizer8;
+                    break;
             }
 
             if (currentVisualizer is Visualizer1 v1) canvas.Paint += v1.Canvas_Paint;
@@ -303,6 +320,8 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             else if (currentVisualizer is Visualizer6 v6) canvas.Paint += v6.Canvas_Paint;
             else if (currentVisualizer is Visualizer11 v11) canvas.Paint += v11.Canvas_Paint;
             else if (currentVisualizer is Visualizer9 v9) canvas.Paint += v9.Canvas_Paint;
+            else if (currentVisualizer is Visualizer7 v7) canvas.Paint += v7.Canvas_Paint;
+            else if (currentVisualizer is Visualizer8 v8) canvas.Paint += v8.Canvas_Paint;
 
             canvas.Invalidate();
         }
