@@ -28,8 +28,8 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
             frequencies = freqs;
             angle += 0.01f;
 
-           
-            if (random.NextDouble() < 0.2) 
+
+            if (random.NextDouble() < 0.2)
             {
                 bubbles.Add(new FloatingBubble(
                     x: random.Next(canvas.Width),
@@ -40,12 +40,12 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
                 ));
             }
 
-            
+
             for (int i = bubbles.Count - 1; i >= 0; i--)
             {
                 bubbles[i].Y -= bubbles[i].Speed;
                 if (bubbles[i].Y + bubbles[i].Radius < 0)
-                    bubbles.RemoveAt(i); 
+                    bubbles.RemoveAt(i);
             }
 
             canvas.Invalidate();
@@ -61,7 +61,7 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.Clear(Color.Black);
 
-           
+
             foreach (var b in bubbles)
             {
                 using (Brush brush = new SolidBrush(b.Color))
@@ -106,7 +106,7 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
                 g.DrawClosedCurve(pen, points, 1.0f, FillMode.Alternate);
             }
 
-            
+
             for (int i = 0; i < 12; i++)
             {
                 int band = random.Next(frequencies.Length);
@@ -148,7 +148,7 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
             }
         }
 
-        
+
         private class FloatingBubble
         {
             public float X, Y, Radius, Speed;
