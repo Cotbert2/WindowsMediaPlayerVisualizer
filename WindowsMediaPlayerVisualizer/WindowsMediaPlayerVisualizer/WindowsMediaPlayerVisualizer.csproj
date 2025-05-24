@@ -152,6 +152,7 @@
       <DependentUpon>MainFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Visualizers\Visualizer1.cs" />
+    <Compile Include="Visualizers\Visualizer11.cs" />
     <Compile Include="Visualizers\Visualizer2.cs" />
     <Compile Include="Visualizers\Visualizer3.cs" />
     <Compile Include="Visualizers\Visualizer4.cs" />
