@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace WindowsMediaPlayerVisualizer.Visualizers
 {
-    internal class Visualizer4
+    public class Visualizer4
     {
         private Panel canvas;
 

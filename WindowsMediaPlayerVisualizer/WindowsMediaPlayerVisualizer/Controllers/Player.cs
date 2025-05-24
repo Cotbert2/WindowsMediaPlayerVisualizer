@@ -34,8 +34,6 @@ namespace WindowsMediaPlayerVisualizer.Controllers
         private Visualizer2 visualizer2;
         private Visualizer3 visualizer3;
         private Visualizer4 visualizer4;
-        private Visualizer5 visualizer5;
-        private Visualizer6 visualizer6;
 
 
         private int currentVisualizerIndex = 0;
@@ -60,8 +58,6 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             visualizer2 = new Visualizer2(canvas);
             visualizer3 = new Visualizer3(canvas);
             visualizer4 = new Visualizer4(canvas);
-            visualizer5 = new Visualizer5(canvas);
-            visualizer6 = new Visualizer6(canvas);
 
             currentVisualizer = visualizer1;
             canvas.Paint += visualizer1.Canvas_Paint;
@@ -181,10 +177,6 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                 v3.Update();
             else if (currentVisualizer is Visualizer4 v4)
                 v4.Update();
-            else if (currentVisualizer is Visualizer5 v5)
-                v5.Update(fftSampleProvider.GetFrequencies());
-            else if (currentVisualizer is Visualizer6 v6)
-                v6.Update(fftSampleProvider.GetFrequencies());
             if (audioFileReader != null && audioFileReader.TotalTime.TotalSeconds > 0)
             {
                 double current = audioFileReader.CurrentTime.TotalSeconds;
@@ -246,14 +238,13 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             else if (currentVisualizer is Visualizer2 v2) canvas.Paint -= v2.Canvas_Paint;
             else if (currentVisualizer is Visualizer3 v3) canvas.Paint -= v3.Canvas_Paint;
             else if (currentVisualizer is Visualizer4 v4) canvas.Paint -= v4.Canvas_Paint;
-            else if (currentVisualizer is Visualizer5 v5) canvas.Paint -= v5.Canvas_Paint;
         }
 
         private void SwitchVisualizer()
         {
             DetachCurrentVisualizer();
 
-            currentVisualizerIndex = (currentVisualizerIndex + 1) % 6;
+            currentVisualizerIndex = (currentVisualizerIndex + 1) % 4;
 
             switch (currentVisualizerIndex)
             {
@@ -269,20 +260,12 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                 case 3:
                     currentVisualizer = visualizer4;
                     break;
-                case 4:
-                    currentVisualizer = visualizer5;
-                    break;
-                case 5:
-                    currentVisualizer = visualizer6;
-                    break;
             }
 
             if (currentVisualizer is Visualizer1 v1) canvas.Paint += v1.Canvas_Paint;
             else if (currentVisualizer is Visualizer2 v2) canvas.Paint += v2.Canvas_Paint;
             else if (currentVisualizer is Visualizer3 v3) canvas.Paint += v3.Canvas_Paint;
             else if (currentVisualizer is Visualizer4 v4) canvas.Paint += v4.Canvas_Paint;
-            else if (currentVisualizer is Visualizer5 v5) canvas.Paint += v5.Canvas_Paint;
-            else if (currentVisualizer is Visualizer6 v6) canvas.Paint += v6.Canvas_Paint;
 
             canvas.Invalidate();
         }
