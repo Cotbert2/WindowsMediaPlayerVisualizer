@@ -158,6 +158,7 @@
     <Compile Include="Visualizers\Visualizer4.cs" />
     <Compile Include="Visualizers\Visualizer5.cs" />
     <Compile Include="Visualizers\Visualizer6.cs" />
+    <Compile Include="Visualizers\Visualizer9.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
