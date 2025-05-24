@@ -1,0 +1,20 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Results
+[Bb]in/
+[Oo]bj/
+
+# Copilot y bases de datos temporales
+*.db
+*.db-shm
+*.db-wal
+*.vsidx
+
+# Otros temporales
+*.cache
+*.log
