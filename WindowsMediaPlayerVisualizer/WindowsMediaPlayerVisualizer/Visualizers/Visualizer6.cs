@@ -61,7 +61,6 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.Clear(Color.Black);
 
-
             foreach (var b in bubbles)
             {
                 using (Brush brush = new SolidBrush(b.Color))
@@ -70,8 +69,7 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
                 }
             }
 
-            float cx = canvas.Width / 2f;
-            float cy = canvas.Height / 2f;
+            float cx = canvas.Width / 2f; float cy = canvas.Height / 2f;
             float baseRadius = Math.Min(cx, cy) * 0.5f;
 
             int detail = 256;
@@ -105,7 +103,6 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
             {
                 g.DrawClosedCurve(pen, points, 1.0f, FillMode.Alternate);
             }
-
 
             for (int i = 0; i < 12; i++)
             {
