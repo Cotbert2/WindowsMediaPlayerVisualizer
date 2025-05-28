@@ -284,7 +284,7 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                     currentVisualizer = visualizer1;
                     break;
                 case 1:
-                    currentVisualizer = visualizer9;
+                    currentVisualizer = visualizer2;
                     break;
                 case 2:
                     currentVisualizer = visualizer3;
