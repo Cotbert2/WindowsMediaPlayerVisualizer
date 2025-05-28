@@ -22,5 +22,35 @@ namespace WindowsMediaPlayerVisualizer.Utils
             }
             return rotatedPoints;
         }
+
+        public static PointF RotatePoint(PointF point, PointF center, float angleDegrees)
+        {
+            double angleRad = angleDegrees * Math.PI / 180.0;
+            float cos = (float)Math.Cos(angleRad);
+            float sin = (float)Math.Sin(angleRad);
+
+            float x = point.X - center.X;
+            float y = point.Y - center.Y;
+
+            return new PointF(
+                x * cos - y * sin + center.X,
+                x * sin + y * cos + center.Y
+            );
+        }
+
+        public static PointF[] GenerateEllipsePoints(PointF center, float width, float height, int segments = 36)
+        {
+            PointF[] points = new PointF[segments];
+            for (int i = 0; i < segments; i++)
+            {
+                double angle = 2 * Math.PI * i / segments;
+                points[i] = new PointF(
+                    center.X + (width / 2) * (float)Math.Cos(angle),
+                    center.Y + (height / 2) * (float)Math.Sin(angle)
+                );
+            }
+            return points;
+        }
     }
+
 }

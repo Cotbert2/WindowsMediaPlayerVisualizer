@@ -194,8 +194,8 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                 v5.Update(fftSampleProvider.GetFrequencies());
             else if (currentVisualizer is Visualizer6 v6)
                 v6.Update(fftSampleProvider.GetFrequencies());
-            else if (currentVisualizer is Visualizer10 v11)
-                v11.Update(fftSampleProvider.GetFrequencies(), currentVolume);
+            else if (currentVisualizer is Visualizer10 v10)
+                v10.Update(fftSampleProvider.GetFrequencies(), currentVolume);
             else if (currentVisualizer is Visualizer9 v9)
                 v9.Update(fftSampleProvider.GetFrequencies(), currentVolume);
             else if (currentVisualizer is Visualizer7 v7)
@@ -266,7 +266,7 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             else if (currentVisualizer is Visualizer4 v4) canvas.Paint -= v4.Canvas_Paint;
             else if (currentVisualizer is Visualizer5 v5) canvas.Paint -= v5.Canvas_Paint;
             else if (currentVisualizer is Visualizer6 v6) canvas.Paint -= v6.Canvas_Paint;
-            else if (currentVisualizer is Visualizer10 v11) canvas.Paint -= v11.Canvas_Paint;
+            else if (currentVisualizer is Visualizer10 v10) canvas.Paint -= v10.Canvas_Paint;
             else if (currentVisualizer is Visualizer9 v9) canvas.Paint -= v9.Canvas_Paint;
             else if (currentVisualizer is Visualizer7 v7) canvas.Paint -= v7.Canvas_Paint;
             else if (currentVisualizer is Visualizer8 v8) canvas.Paint -= v8.Canvas_Paint;
@@ -284,7 +284,7 @@ namespace WindowsMediaPlayerVisualizer.Controllers
                     currentVisualizer = visualizer1;
                     break;
                 case 1:
-                    currentVisualizer = visualizer2;
+                    currentVisualizer = visualizer9;
                     break;
                 case 2:
                     currentVisualizer = visualizer3;
@@ -318,7 +318,7 @@ namespace WindowsMediaPlayerVisualizer.Controllers
             else if (currentVisualizer is Visualizer4 v4) canvas.Paint += v4.Canvas_Paint;
             else if (currentVisualizer is Visualizer5 v5) canvas.Paint += v5.Canvas_Paint;
             else if (currentVisualizer is Visualizer6 v6) canvas.Paint += v6.Canvas_Paint;
-            else if (currentVisualizer is Visualizer10 v11) canvas.Paint += v11.Canvas_Paint;
+            else if (currentVisualizer is Visualizer10 v10) canvas.Paint += v10.Canvas_Paint;
             else if (currentVisualizer is Visualizer9 v9) canvas.Paint += v9.Canvas_Paint;
             else if (currentVisualizer is Visualizer7 v7) canvas.Paint += v7.Canvas_Paint;
             else if (currentVisualizer is Visualizer8 v8) canvas.Paint += v8.Canvas_Paint;

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using WindowsMediaPlayerVisualizer.Utils;
 
 namespace WindowsMediaPlayerVisualizer.Visualizers
 {
@@ -45,9 +46,7 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
 
         private void DrawUniformOrbits(Graphics g)
         {
-            int centerX = canvas.Width / 2;
-            int centerY = canvas.Height / 2;
-
+            PointF center = new PointF(canvas.Width / 2, canvas.Height / 2);
             float scale = 1.0f + currentVolume * 0.5f;
             int width = (int)(BaseEllipseWidth * scale);
             int height = (int)(BaseEllipseHeight * scale);
@@ -55,26 +54,45 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
             for (int i = 0; i < OrbitCount; i++)
             {
                 float orbitRotation = rotationAngle * (i + 1) / 2;
+                Color orbitColor = GetOrbitColor(i);
 
-                using (Pen orbitPen = new Pen(GetOrbitColor(i), 2))
+                using (Pen orbitPen = new Pen(orbitColor, 2))
                 {
-                    g.TranslateTransform(centerX, centerY);
-                    g.RotateTransform(orbitRotation);
-                    g.TranslateTransform(-centerX, -centerY);
+                    PointF[] ellipsePoints = Operations.GenerateEllipsePoints(center, width, height);
 
-                    g.DrawEllipse(orbitPen,
-                        centerX - width / 2,
-                        centerY - height / 2,
-                        width,
-                        height);
+                    PointF[] rotatedPoints = new PointF[ellipsePoints.Length];
+                    for (int j = 0; j < ellipsePoints.Length; j++)
+                    {
+                        rotatedPoints[j] = Operations.RotatePoint(ellipsePoints[j], center, orbitRotation);
+                    }
 
-                    DrawElectron(g, centerX, centerY, width, height, orbitRotation);
+                    g.DrawPolygon(orbitPen, rotatedPoints);
 
-                    g.ResetTransform();
+                    DrawElectron(g, center, width, height, orbitRotation);
                 }
             }
 
-            DrawNucleus(g, centerX, centerY);
+            DrawNucleus(g, center);
+        }
+
+        private void DrawElectron(Graphics g, PointF center, float width, float height, float orbitRotation)
+        {
+            PointF electronPos = new PointF(
+                center.X + (width / 2),
+                center.Y
+            );
+            electronPos = Operations.RotatePoint(electronPos, center, orbitRotation);
+
+            float electronSize = 6f + currentVolume * 10f;
+
+            using (Brush electronBrush = new SolidBrush(Color.LightCyan))
+            {
+                g.FillEllipse(electronBrush,
+                    electronPos.X - electronSize / 2,
+                    electronPos.Y - electronSize / 2,
+                    electronSize,
+                    electronSize);
+            }
         }
 
         private Color GetOrbitColor(int orbitIndex)
@@ -85,32 +103,14 @@ namespace WindowsMediaPlayerVisualizer.Visualizers
                 255 - orbitIndex * 30);
         }
 
-        private void DrawElectron(Graphics g, int centerX, int centerY, int width, int height, float orbitRotation)
-        {
-            double angle = orbitRotation * Math.PI / 180.0;
-            float x = centerX + (width / 2) * (float)Math.Cos(angle);
-            float y = centerY + (height / 2) * (float)Math.Sin(angle);
-
-            float electronSize = 6f + currentVolume * 10f;
-
-            using (Brush electronBrush = new SolidBrush(Color.LightCyan))
-            {
-                g.FillEllipse(electronBrush,
-                    x - electronSize / 2,
-                    y - electronSize / 2,
-                    electronSize,
-                    electronSize);
-            }
-        }
-
-        private void DrawNucleus(Graphics g, int centerX, int centerY)
+        private void DrawNucleus(Graphics g, PointF center)
         {
             int nucleusSize = 20 + (int)(currentVolume * 30);
             using (Brush nucleusBrush = new SolidBrush(Color.LightCyan))
             {
                 g.FillEllipse(nucleusBrush,
-                    centerX - nucleusSize / 2,
-                    centerY - nucleusSize / 2,
+                    center.X - nucleusSize / 2,
+                    center.Y - nucleusSize / 2,
                     nucleusSize,
                     nucleusSize);
             }
